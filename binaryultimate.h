@@ -19,6 +19,8 @@ private slots:
     void on_ToBinaryBT1_clicked();
     bool ValidIP(QStringList vip);
     void on_ToDecimalBT2_clicked();
+    void on_ToHEXABT3_clicked();
+
 private:
     Ui::BinaryUltimate *ui;
 

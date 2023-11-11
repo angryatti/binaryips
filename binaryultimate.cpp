@@ -52,6 +52,83 @@ return fDecN;
  }
 
 
+QString HexToBin(std::string hexdec)
+ {
+size_t i = (hexdec[1] == 'x' || hexdec[1] == 'X')? 2 : 0;
+QString hexMain ="";
+while (hexdec[i]) {
+
+    switch (hexdec[i]) {
+    case '0':
+        hexMain+= "0000";
+        break;
+    case '1':
+        hexMain+= "0001";
+        break;
+    case '2':
+        hexMain+= "0010";
+        break;
+    case '3':
+        hexMain+= "0011";
+        break;
+    case '4':
+        hexMain+= "0100";
+        break;
+    case '5':
+        hexMain+= "0101";
+        break;
+    case '6':
+        hexMain+= "0110";
+        break;
+    case '7':
+        hexMain+= "0111";
+        break;
+    case '8':
+        hexMain+= "1000";
+        break;
+    case '9':
+        hexMain+= "1001";
+        break;
+    case 'A':
+    case 'a':
+        hexMain+= "1010";
+        break;
+    case 'B':
+    case 'b':
+        hexMain+= "1011";
+        break;
+    case 'C':
+    case 'c':
+        hexMain+= "1100";
+        break;
+    case 'D':
+    case 'd':
+        hexMain+="1101";
+        break;
+    case 'E':
+    case 'e':
+        hexMain+="1110";
+        break;
+    case 'F':
+    case 'f':
+        hexMain+="1111";
+        break;
+    case ':':
+       hexMain+= ".";
+        break;
+    default:
+        hexMain= "Invalid hexadecimal digit" + QString(hexdec[i]);break;
+    }
+    i++;
+}
+
+    return hexMain;
+
+ }
+
+
+
+
  bool BinaryUltimate::ValidIP(QStringList strIP)
   {
 QMessageBox msgBox;
@@ -82,7 +159,8 @@ for (int i =0;i<strIP.length();i++)
     }
 }
 int cnt = 0;
-QString tempIP=ui->ipLE1->text();
+QString tempIP;
+tempIP=ui->ipLE1->text();
 for (int i=0;i<tempIP.length();i++)
 {
     if (tempIP[i]=='.')
@@ -126,7 +204,7 @@ for (int i =0;i<=3;i++)
 }
 outBinIp.removeAt(outBinIp.length()-1);
 qDebug() << outBinIp;
-ui->binaryIPLE2->setText(outBinIp);
+ui->OutputConvTE1->setText(outBinIp);
  }
  }
 
@@ -148,11 +226,17 @@ for (int i =0;i<=3;i++)
 }
 outDecIp.removeAt(outDecIp.length()-1);
 qDebug() << outDecIp;
-ui->binaryIPLE2->setText(outDecIp);
+ui->OutputConvTE1->setText(outDecIp);
 
  }
 
 
 
+}
+
+
+void BinaryUltimate::on_ToHEXABT3_clicked()
+{
+ ui->OutputConvTE1->setText(HexToBin(ui->ipLE1->text().toStdString()));
 }
 
