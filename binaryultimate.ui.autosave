@@ -29,12 +29,12 @@
      <rect>
       <x>30</x>
       <y>70</y>
-      <width>101</width>
+      <width>181</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add Ip address:</string>
+     <string>Add Ip address or Subnet Mask:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ToBinaryBT1">

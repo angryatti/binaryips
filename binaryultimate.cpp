@@ -27,6 +27,8 @@ int BinToDec(int binNumber) {
         decimalValue += reminder * base1;
         base1 = base1 * 2;
     }
+
+
     return decimalValue;
 }
 
@@ -50,68 +52,107 @@ return fDecN;
  }
 
 
- void BinaryUltimate::on_ToBinaryBT1_clicked()
- {
-QStringList octList;
-octList << ui->ipLE1->text().split('.');
+ bool BinaryUltimate::ValidIP(QStringList strIP)
+  {
 QMessageBox msgBox;
 QRegularExpression regEx("[0-9]");
 QRegularExpressionMatch match;
 
-for (int i =0;i<octList.length();i++)
+for (int i =0;i<strIP.length();i++)
 {
-  match =  regEx.match(octList[i]);
+
+    match =  regEx.match(strIP[i]);
 
     if (!match.hasMatch())
     {
-      msgBox.setText("Invalid ip or subnetmask it is containing alphabet");
-      msgBox.exec();
-      return;
+        msgBox.setText("Invalid ip or subnetmask it is containing alphabet");
+        msgBox.exec();
+        return 0;
 
 
     }
-    if (octList[i].toInt()>255)
+    if ((strIP[i].length()>8))
     {
-    msgBox.setText("Invalid ip or subnetmask");
-    msgBox.exec();
-    return;
+
+        msgBox.setText("Invalid ip or subnetmask too long or too much");
+        msgBox.exec();
+        return 0;
 
 
     }
 }
 int cnt = 0;
-QString tempIP = ui->ipLE1->text();
+QString tempIP=ui->ipLE1->text();
 for (int i=0;i<tempIP.length();i++)
-         {
+{
     if (tempIP[i]=='.')
-  {
-    cnt++;
+    {
+        cnt++;
 
     }
     if (cnt>3)
     {
-    break;
+        break;
     }
 
-    }
+}
 if (cnt>3)
 {
     msgBox.setText("Invalid ip or subnetmask");
     msgBox.exec();
-    return;
+    return 0;
 
 }
+
+return 1;
+
+ }
+
+ void BinaryUltimate::on_ToBinaryBT1_clicked()
+ {
+QStringList octList;
+octList << ui->ipLE1->text().split('.');
+
+if (ValidIP(octList))
+{
+
+
 QString outBinIp ="";
 for (int i =0;i<=3;i++)
     {
-    qDebug() << octList[i];
-     outBinIp+= QStringLiteral("%1").arg(DecToBin(octList[i]),8,QLatin1Char('0')) +".";
 
+     outBinIp+= QStringLiteral("%1").arg(DecToBin(octList[i]),8,QLatin1Char('0')) +".";
 
 }
 outBinIp.removeAt(outBinIp.length()-1);
 qDebug() << outBinIp;
-
-
 ui->binaryIPLE2->setText(outBinIp);
  }
+ }
+
+void BinaryUltimate::on_ToDecimalBT2_clicked()
+{
+ QStringList octList;
+ octList << ui->ipLE1->text().split('.');
+
+ if (ValidIP(octList))
+ {
+
+
+QString outDecIp ="";
+for (int i =0;i<=3;i++)
+{
+
+     outDecIp+= QString::number(BinToDec(octList[i].toInt()))+".";
+
+}
+outDecIp.removeAt(outDecIp.length()-1);
+qDebug() << outDecIp;
+ui->binaryIPLE2->setText(outDecIp);
+
+ }
+
+
+
+}
+
