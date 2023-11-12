@@ -42,7 +42,7 @@
      <rect>
       <x>30</x>
       <y>160</y>
-      <width>75</width>
+      <width>61</width>
       <height>24</height>
      </rect>
     </property>
@@ -53,9 +53,9 @@
    <widget class="QPushButton" name="ToDecimalBT2">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>90</x>
       <y>160</y>
-      <width>75</width>
+      <width>71</width>
       <height>24</height>
      </rect>
     </property>
@@ -66,9 +66,9 @@
    <widget class="QPushButton" name="ToHEXABT3">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>160</x>
       <y>160</y>
-      <width>101</width>
+      <width>71</width>
       <height>24</height>
      </rect>
     </property>
@@ -79,11 +79,37 @@
    <widget class="QTextEdit" name="OutputConvTE1">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>480</x>
       <y>60</y>
       <width>221</width>
       <height>131</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="switchValueBT4">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>110</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;-- --&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BinToHexBT5">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>160</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BinToHEX</string>
     </property>
    </widget>
   </widget>

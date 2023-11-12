@@ -125,7 +125,68 @@ while (hexdec[i]) {
     return hexMain;
 
  }
+ //this too https://www.geeksforgeeks.org
+ void createMap(std::unordered_map<std::string, char> *um)
+ {
+    (*um)["0000"] = '0';
+    (*um)["0001"] = '1';
+    (*um)["0010"] = '2';
+    (*um)["0011"] = '3';
+    (*um)["0100"] = '4';
+    (*um)["0101"] = '5';
+    (*um)["0110"] = '6';
+    (*um)["0111"] = '7';
+    (*um)["1000"] = '8';
+    (*um)["1001"] = '9';
+    (*um)["1010"] = 'A';
+    (*um)["1011"] = 'B';
+    (*um)["1100"] = 'C';
+    (*um)["1101"] = 'D';
+    (*um)["1110"] = 'E';
+    (*um)["1111"] = 'F';
+ }
+ // It's more then I know https://www.geeksforgeeks.org
+ QString BinaryUltimate::BinToHex(std::string bin)
+ {
+    int l = bin.size();
+    int t = bin.find_first_of('.');
 
+    int len_left = t != -1 ? t : l;
+
+    for (int i = 1; i <= (4 - len_left % 4) % 4; i++)
+    bin = '0' + bin;
+
+
+    if (t != -1)
+    {
+    int len_right = l - len_left - 1;
+
+    for (int i = 1; i <= (4 - len_right % 4) % 4; i++)
+        bin = bin + '0';
+    }
+
+    std::unordered_map<std::string, char> bin_hex_map;
+    createMap(&bin_hex_map);
+
+    int i = 0;
+    QString hex = "";
+
+    while (1)
+    {
+    hex += bin_hex_map[bin.substr(i, 4)];
+    i += 4;
+    if (i == bin.size())
+        break;
+
+    if (bin.at(i) == '.')
+    {
+        hex += ':';
+        i++;
+    }
+    }
+
+    return hex;
+ }
 
 
 
@@ -238,5 +299,41 @@ ui->OutputConvTE1->setText(outDecIp);
 void BinaryUltimate::on_ToHEXABT3_clicked()
 {
  ui->OutputConvTE1->setText(HexToBin(ui->ipLE1->text().toStdString()));
+}
+
+
+void BinaryUltimate::on_switchValueBT4_clicked()
+{
+ QString temp;
+ temp = ui->ipLE1->text();
+ ui->ipLE1->setText(ui->OutputConvTE1->toPlainText());
+ ui->OutputConvTE1->setText(temp);
+
+}
+
+
+void BinaryUltimate::on_BinToHexBT5_clicked()
+{
+ QStringList octList;
+ octList << ui->ipLE1->text().split('.');
+
+
+QString outHexIp ="";
+for (int i =0;i<octList.length();i++)
+{
+
+    outHexIp+= BinToHex(octList[i].toStdString())+":";
+
+}
+qDebug() << outHexIp;
+outHexIp.removeAt(outHexIp.length()-1);
+qDebug() << outHexIp;
+ui->OutputConvTE1->setText(outHexIp);
+
+
+
+
+
+// ui->OutputConvTE1->setText(BinToHex(ui->ipLE1->text().toStdString()));
 }
 
