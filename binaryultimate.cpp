@@ -17,6 +17,9 @@ BinaryUltimate::~BinaryUltimate()
 
 int BinToDec(int binNumber) {
 
+
+
+
     int decimalValue = 0;
     int base1 = 1;
 
@@ -249,6 +252,21 @@ return 1;
 
  void BinaryUltimate::on_ToBinaryBT1_clicked()
  {
+     QMessageBox msgBox;
+     if (ui->ipLE1->text()=="")    {
+
+
+         msgBox.setText("The source ip or subnet mask is empty");
+         msgBox.exec();
+
+         return;
+
+
+
+     }
+
+
+
 QStringList octList;
 octList << ui->ipLE1->text().split('.');
 
@@ -271,6 +289,20 @@ ui->OutputConvTE1->setText(outBinIp);
 
 void BinaryUltimate::on_ToDecimalBT2_clicked()
 {
+    QMessageBox msgBox;
+    if (ui->ipLE1->text()=="")    {
+
+
+        msgBox.setText("The source ip or subnet mask is empty");
+        msgBox.exec();
+
+        return;
+
+
+
+    }
+
+
  QStringList octList;
  octList << ui->ipLE1->text().split('.');
 
@@ -298,6 +330,20 @@ ui->OutputConvTE1->setText(outDecIp);
 
 void BinaryUltimate::on_ToHEXABT3_clicked()
 {
+    QMessageBox msgBox;
+    if (ui->ipLE1->text()=="")    {
+
+
+        msgBox.setText("The source ip or subnet mask is empty");
+        msgBox.exec();
+
+        return;
+
+
+
+    }
+
+
  ui->OutputConvTE1->setText(HexToBin(ui->ipLE1->text().toStdString()));
 }
 
@@ -314,6 +360,20 @@ void BinaryUltimate::on_switchValueBT4_clicked()
 
 void BinaryUltimate::on_BinToHexBT5_clicked()
 {
+
+    QMessageBox msgBox;
+    if (ui->ipLE1->text()=="")    {
+
+
+        msgBox.setText("The source ip or subnet mask is empty");
+        msgBox.exec();
+
+        return;
+
+
+
+    }
+
  QStringList octList;
  octList << ui->ipLE1->text().split('.');
 
